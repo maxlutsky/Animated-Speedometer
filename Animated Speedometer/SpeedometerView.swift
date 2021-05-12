@@ -9,10 +9,32 @@ import UIKit
 
 class SpeedometerView: UIView {
     
-    var needleColor = UIColor(white: 0.7, alpha: 1)
+    var needleColor = UIColor.black
     var needleWidth: CGFloat = 4
     let needle = CAShapeLayer()
-    var myLayer = CATextLayer()
+    
+    var currentProgress: CGFloat = 0
+    
+    dynamic var progress: CGFloat = 0.00 {
+            didSet {
+                let animation = CABasicAnimation()
+                animation.keyPath = "transform.rotation.z"
+                animation.fromValue = getRadians(degrees: currentProgress)
+                animation.toValue = getRadians(degrees: progress)
+                animation.duration = CFTimeInterval(abs(currentProgress - progress)/100)
+                animation.isRemovedOnCompletion = false
+                animation.fillMode = CAMediaTimingFillMode.forwards;
+                needle.add(animation, forKey: "transform.rotation.z")
+                currentProgress = progress
+            }
+        }
+    
+    init(){
+        let frame = CGRect(x: 0, y: 0, width: CGFloat(UIScreen.main.bounds.width*0.8), height: 300)
+        super.init(frame: frame)
+        buildGauge(frame: frame)
+        setupNeedle(in: frame)
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,7 +92,10 @@ class SpeedometerView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        let frame = CGRect(x: 0, y: 0, width: CGFloat(UIScreen.main.bounds.width*0.8), height: 300)
+        super.init(frame: frame)
+        buildGauge(frame: frame)
+        setupNeedle(in: frame)
     }
     
     func setupNeedle(in rect: CGRect) {
@@ -87,26 +112,12 @@ class SpeedometerView: UIView {
         let point = CGPoint(x: 0.5, y: 0.5)
         setAnchorForLayer(anchor: point, layer: needle)
         layer.addSublayer(needle)
-        animateNeedle(degrees: 0)
     }
     
-    func addSubLayer() {
-            myLayer.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-            myLayer.backgroundColor = UIColor.blue.cgColor
-            myLayer.string = "Hello"
-            layer.addSublayer(myLayer)
+    func setValue(percents: Int) {
+        if percents <= 100 && percents >= 0 {
+            progress = CGFloat(percents * 180 / 100)
         }
-    
-    func animateNeedle(degrees: CGFloat) {
-        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        animation.fromValue = getRadians(degrees: degrees)
-        animation.toValue = getRadians(degrees: 160)
-        animation.duration = 1.0
-        animation.isRemovedOnCompletion = false
-        animation.fillMode = CAMediaTimingFillMode.forwards;
-        needle.add(animation, forKey: "rotateAnimation")
-        print("animate")
-
     }
     
     func getRadians(degrees: CGFloat) -> CGFloat {
@@ -131,5 +142,4 @@ class SpeedometerView: UIView {
         layer.position = position
         layer.anchorPoint = anchor
     }
-    
 }

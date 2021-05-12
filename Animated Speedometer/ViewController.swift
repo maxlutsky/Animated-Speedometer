@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var slider: UISlider!
+    
     let speedometer = SpeedometerView(frame: CGRect(x: 0, y: 0, width: CGFloat(UIScreen.main.bounds.width*0.8), height: CGFloat(UIScreen.main.bounds.width*0.8)))
     
     override func viewDidLoad() {
@@ -20,7 +22,7 @@ class ViewController: UIViewController {
         showCheckMark(text: "HORAAAAY", closure: nil)
     }
     @IBAction func rotateButton(_ sender: Any) {
-        
+        speedometer.setValue(percents: Int(slider.value))
     }
     
     func showCheckMark(text: String, closure: (() -> Void)?){

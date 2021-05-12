@@ -39,19 +39,28 @@
                                     <action selector="rotateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uPE-Bc-Bjn"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="1Vl-gF-ZXV">
+                                <rect key="frame" x="39.5" y="632" width="335" height="31"/>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5mJ-bf-62r" firstAttribute="height" secondItem="fMW-ME-sJ6" secondAttribute="height" id="J7V-Ub-0Re"/>
+                            <constraint firstItem="1Vl-gF-ZXV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KkL-Nd-BfT"/>
                             <constraint firstItem="5mJ-bf-62r" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.3" id="LVT-VH-t7E"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1Vl-gF-ZXV" secondAttribute="bottom" constant="200" id="N33-5Z-C6N"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5mJ-bf-62r" secondAttribute="bottom" id="R98-5Z-vKr"/>
                             <constraint firstItem="5mJ-bf-62r" firstAttribute="width" secondItem="fMW-ME-sJ6" secondAttribute="width" id="WK0-mo-dsr"/>
+                            <constraint firstItem="1Vl-gF-ZXV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="cra-g4-J4a"/>
                             <constraint firstItem="fMW-ME-sJ6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gh6-zd-HzD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5mJ-bf-62r" secondAttribute="trailing" id="qa4-50-7qF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fMW-ME-sJ6" secondAttribute="bottom" id="qhO-sF-msM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="slider" destination="1Vl-gF-ZXV" id="UTW-b1-UAf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
